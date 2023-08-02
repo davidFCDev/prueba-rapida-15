@@ -31,6 +31,7 @@ function useSearch() {
 function App() {
   const { search, updateSearch, error } = useSearch();
   const [movies, setMovies] = useState([]);
+  
   const handleSearch = (event) => {
     event.preventDefault();
   };
