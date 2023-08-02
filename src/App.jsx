@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Movies } from "./components/Movies";
+import { useMovies } from "./hooks/useMovies";
 
 function useSearch() {
   const [search, updateSearch] = useState("");
@@ -29,11 +30,13 @@ function useSearch() {
 }
 
 function App() {
+  const [sort, setSort] = useState(false);
   const { search, updateSearch, error } = useSearch();
-  const [movies, setMovies] = useState([]);
-  
+  const { movies, getMovies } = useMovies({ search, sort });
+
   const handleSearch = (event) => {
     event.preventDefault();
+    getMovies({ search });
   };
 
   const handleChange = (event) => {
